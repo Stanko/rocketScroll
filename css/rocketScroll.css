@@ -1,0 +1,32 @@
+.rocketScroll {
+  overflow: hidden !important;
+  position: relative; }
+  .rocketScroll .scrollFix {
+    overflow-y: scroll;
+    height: 100%; }
+  .rocketScroll .scrollContent {
+    width: 300px; }
+  .rocketScroll .scrollbar {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    bottom: 6px;
+    background: transparent;
+    width: 6px;
+    border-radius: 3px;
+    transition: background-color 0.5s; }
+  .rocketScroll .scrollbar div {
+    height: 100px;
+    width: 6px;
+    border-radius: 3px;
+    background: transparent;
+    transition: background-color 0.5s; }
+  .rocketScroll:hover .scrollbar {
+    background: #ddd; }
+  .rocketScroll:hover .scrollbar div {
+    background: #999; }
+  .rocketScroll .unselectable {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }
