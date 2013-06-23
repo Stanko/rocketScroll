@@ -23,7 +23,7 @@ Although even this version is working pretty smooth. Feel free to try it and giv
 
 ## DEMO
 
-Too sleepy at the moment :) tomorrow!
+Too sleepy at the moment :) tomorrow! Just download zip and try it.
 
 
 ## TODO

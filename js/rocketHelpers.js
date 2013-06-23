@@ -1,3 +1,9 @@
+/*
+	Written by Stanko
+	RocketHelpers - it will become micro library at some point
+	http://www.rocketlaunch.me
+*/
+
 if (!window.getComputedStyle) {
 	window.getComputedStyle = function(el, pseudo) {
 		this.el = el;

@@ -1,3 +1,11 @@
+/*
+	Written by Stanko
+	RocketScroll
+	http://www.rocketlaunch.me
+*/
+
+var RL = RL || {};
+
 RL.RocketScroll = function (selector){
 	this.el = RL.$(selector);
 	this.el.className += ' rocketScroll';
