@@ -42,8 +42,8 @@ Looks like there is crapload of issues - but don't worry! Most of them are minor
 
 * Doesn't work properly when used on the body tag. Not sure if I'm going to fix this - just use one wrapper div :)
 * In webkit browsers (Chrome, Safari) you can scroll right by selecting text. I have a dirty fix, which just resets the scroll. Looking for more elegant solution.
-* ~~Need to replace event.layerY property with something else as it is deprecated in new broswers, and it doesn't work in IE8.~~
-* ~~Clicking on the scrollbar doesn't scroll in IE8 for that reason~~
+* Need to replace event.layerY property with something else as it is deprecated in new broswers, and it doesn't work in IE8.
+* Clicking on the scrollbar doesn't scroll in IE8 for that reason
 * When scrolling by pulling handle, if mouse leaves the element, scroll is stopped. This is due the glitch in IE/webkit (It made element "locked" in scroll mode on the next mouse enter, untill you click somewhere.)
 
 Please give suggestions, fork, upgrade, share, use and abuse it! Pull request are more than welcome :)

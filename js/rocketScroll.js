@@ -96,6 +96,16 @@ RL.RocketScroll.prototype.bindEvents = function(){
 		$this.contentDiv.className = $this.contentDiv.className.replace($this.UNSELECTABLE_CLASS, '');
 		$this.mouseDown = false;
 	};
+	this.scrollbar.onclick = function(e){
+		if(e.stopPropagation){
+			e.stopPropagation();
+		}
+		else{
+			// IE8 and lower stop propagation
+			window.event.cancelBubble = true;
+			window.event.returnValue = false;
+		}
+	};
 
 	// Fix scroll lock
 	this.el.onmouseout = function(e){
@@ -129,10 +139,8 @@ RL.RocketScroll.prototype.bindEvents = function(){
 	this.scrollbar.onclick = function(e){
 		e = e || window.event; // IE Fix
 
-		var offset = relMouseCoords(e);
-
 		// Moves center of the handle to the cursor
-		offset.y -= $this.handle.clientHeight/2;
+		e.layerY -= $this.handle.clientHeight/2;
 
 		$this.fixDiv.scrollTop = offset.y / $this.totalHandle * $this.totalScrollable;
 	};
