@@ -128,7 +128,13 @@ RL.RocketScroll.prototype.bindEvents = function(){
 	// Handles click on the scrollbar
 	this.scrollbar.onclick = function(e){
 		e = e || window.event; // IE Fix
-		$this.fixDiv.scrollTop = e.layerY / $this.totalHandle * $this.totalScrollable;
+
+		var offset = relMouseCoords(e);
+
+		// Moves center of the handle to the cursor
+		offset.y -= $this.handle.clientHeight/2;
+
+		$this.fixDiv.scrollTop = offset.y / $this.totalHandle * $this.totalScrollable;
 	};
 };
 

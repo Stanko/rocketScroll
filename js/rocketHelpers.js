@@ -21,6 +21,45 @@ if (!window.getComputedStyle) {
 	};
 }
 
+
+// BIG TODO
+//
+// MAKE THIS NICE, THIS IS A MESS :)
+//
+function relMouseCoords(e){
+	var totalOffsetX = 0;
+	var totalOffsetY = 0;
+	var canvasX = 0;
+	var canvasY = 0;
+	var currentElement = e.currentTarget;
+
+	while(currentElement){
+		totalOffsetX += currentElement.offsetLeft - currentElement.scrollLeft;
+		totalOffsetY += currentElement.offsetTop - currentElement.scrollTop;
+		currentElement = currentElement.offsetParent;
+	}
+
+    var posx = 0;
+    var posy = 0;
+    e = e || window.event;
+
+    if (e.pageX || e.pageY) {
+        posx = e.pageX;
+        posy = e.pageY;
+    }
+    else if (e.clientX || e.clientY)     {
+        posx = e.clientX + document.body.scrollLeft + document.documentElement.scrollLeft;
+        posy = e.clientY + document.body.scrollTop + document.documentElement.scrollTop;
+    }
+
+	var coords = {
+		'x' : posx - totalOffsetX,
+		'y' : posy - totalOffsetY
+	};
+
+	return coords;
+}
+
 var RL = RL || {};
 
 RL.$ = function (s) {
