@@ -142,7 +142,7 @@ RL.RocketScroll.prototype.bindEvents = function(){
 		// Moves center of the handle to the cursor
 		e.layerY -= $this.handle.clientHeight/2;
 
-		$this.fixDiv.scrollTop = offset.y / $this.totalHandle * $this.totalScrollable;
+		$this.fixDiv.scrollTop = e.layerY / $this.totalHandle * $this.totalScrollable;
 	};
 };
 
