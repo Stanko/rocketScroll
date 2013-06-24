@@ -1,11 +1,15 @@
+/* line 1, ../sass/rocketScroll.scss */
 .rocketScroll {
   overflow: hidden !important;
   position: relative; }
+  /* line 5, ../sass/rocketScroll.scss */
   .rocketScroll .scrollFix {
     overflow-y: scroll;
     height: 100%; }
+  /* line 10, ../sass/rocketScroll.scss */
   .rocketScroll .scrollContent {
     width: 300px; }
+  /* line 14, ../sass/rocketScroll.scss */
   .rocketScroll .scrollbar {
     position: absolute;
     right: 6px;
@@ -15,16 +19,26 @@
     width: 6px;
     border-radius: 3px;
     transition: background-color 0.5s; }
+    /* line 23, ../sass/rocketScroll.scss */
+    .rocketScroll .scrollbar:hover {
+      cursor: pointer; }
+      /* line 25, ../sass/rocketScroll.scss */
+      .rocketScroll .scrollbar:hover div:hover {
+        background: #777; }
+  /* line 31, ../sass/rocketScroll.scss */
   .rocketScroll .scrollbar div {
     height: 100px;
     width: 6px;
     border-radius: 3px;
     background: transparent;
     transition: background-color 0.5s; }
+  /* line 40, ../sass/rocketScroll.scss */
   .rocketScroll:hover .scrollbar {
     background: #ddd; }
+  /* line 43, ../sass/rocketScroll.scss */
   .rocketScroll:hover .scrollbar div {
-    background: #999; }
+    background: #aaa; }
+  /* line 48, ../sass/rocketScroll.scss */
   .rocketScroll .unselectable {
     -moz-user-select: none;
     -webkit-user-select: none;

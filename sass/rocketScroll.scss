@@ -20,6 +20,12 @@
 		width: 6px;
 		border-radius: 3px;
 		transition: background-color 0.5s;
+		&:hover{
+			cursor: pointer;
+			div:hover{
+				background: #777;
+			}
+		}
 	}
 
 	.scrollbar div{
@@ -35,7 +41,7 @@
 			background: #ddd;
 		}
 		.scrollbar div{
-			background: #999;
+			background: #aaa;
 		}
 	}
 

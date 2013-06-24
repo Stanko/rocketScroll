@@ -77,14 +77,7 @@ RL.RocketScroll.prototype.bindEvents = function(){
 	this.handle.onmousedown = function(e){
 		e = e || window.event; // IE Fix
 
-		if(e.stopPropagation){
-			e.stopPropagation();
-		}
-		else{
-			// IE8 and lower stop propagation
-			window.event.cancelBubble = true;
-			window.event.returnValue = false;
-		}
+		RL.stopPropagation(e);
 
 		$this.contentDiv.className += $this.UNSELECTABLE_CLASS;
 
@@ -96,23 +89,13 @@ RL.RocketScroll.prototype.bindEvents = function(){
 		$this.contentDiv.className = $this.contentDiv.className.replace($this.UNSELECTABLE_CLASS, '');
 		$this.mouseDown = false;
 	};
-	this.scrollbar.onclick = function(e){
-		if(e.stopPropagation){
-			e.stopPropagation();
-		}
-		else{
-			// IE8 and lower stop propagation
-			window.event.cancelBubble = true;
-			window.event.returnValue = false;
-		}
-	};
 
 	// Fix scroll lock
 	this.el.onmouseout = function(e){
 		e = e || window.event; // IE Fix
 
 		// Emulates onmouse leave (onmouse out is triggered when mouse gets over child element)
-		if ((e.relatedTarget || e.toElement) == this.parentNode){
+		if ((e.relatedTarget || e.toElement) === this.parentNode){
 			$this.mouseDown = false;
 			$this.contentDiv.className = $this.contentDiv.className.replace($this.UNSELECTABLE_CLASS, '');
 		}
@@ -139,10 +122,12 @@ RL.RocketScroll.prototype.bindEvents = function(){
 	this.scrollbar.onclick = function(e){
 		e = e || window.event; // IE Fix
 
-		// Moves center of the handle to the cursor
-		e.layerY -= $this.handle.clientHeight/2;
+		RL.stopPropagation(e);
 
-		$this.fixDiv.scrollTop = e.layerY / $this.totalHandle * $this.totalScrollable;
+		// Moves center of the handle to the cursor
+		var layerY = RL.getOffset(e) - $this.handle.clientHeight / 2;
+
+		$this.fixDiv.scrollTop = layerY / $this.totalHandle * $this.totalScrollable;
 	};
 };
 
