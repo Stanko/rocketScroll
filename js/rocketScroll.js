@@ -119,6 +119,10 @@ RS.RocketScroll.prototype.bindEvents = function(){
 		$this.handle.style.marginTop = $this.ratio * this.scrollTop + 'px';
 	};
 
+	this.handle.onclick = function(e){
+		RS.stopPropagation(e);
+	};
+
 	// Detect when mouse is pressed
 	this.handle.onmousedown = function(e){
 		e = e || window.event; // IE Fix
@@ -139,9 +143,12 @@ RS.RocketScroll.prototype.bindEvents = function(){
 	// Fix scroll lock
 	this.el.onmouseout = function(e){
 		e = e || window.event; // IE Fix
+		RS.stopPropagation(e);
+
+		possibleChild = e.relatedTarget || e.toElement;
 
 		// Emulates onmouse leave (onmouse out is triggered when mouse gets over child element)
-		if ((e.relatedTarget || e.toElement) === this.parentNode){
+		if (!RS.isChild(this, possibleChild)){
 			$this.mouseDown = false;
 			$this.contentDiv.className = $this.contentDiv.className.replace($this.UNSELECTABLE_CLASS, '');
 		}

@@ -1,51 +1,41 @@
 .rocketScroll {
   overflow: hidden !important;
-  position: relative;
-}
-.rocketScroll .scrollDiv {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-  overflow-y: scroll;
-  height: 100%;
-}
-.rocketScroll .scrollContent {
-  -webkit-box-sizing: border-box;
-  -moz-box-sizing: border-box;
-  box-sizing: border-box;
-}
-.rocketScroll .scrollbar {
-  position: absolute;
-  right: 6px;
-  top: 6px;
-  bottom: 6px;
-  background: transparent;
-  width: 6px;
-  border-radius: 3px;
-  transition: background-color 0.5s;
-}
-.rocketScroll .scrollbar:hover {
-  cursor: pointer;
-}
-.rocketScroll .scrollbar:hover div:hover {
-  background: #777;
-}
-.rocketScroll .scrollbar div {
-  height: 100px;
-  width: 6px;
-  border-radius: 3px;
-  background: transparent;
-  transition: background-color 0.5s;
-}
-.rocketScroll:hover .scrollbar {
-  background: #ddd;
-}
-.rocketScroll:hover .scrollbar div {
-  background: #aaa;
-}
-.rocketScroll .unselectable {
-  -moz-user-select: none;
-  -webkit-user-select: none;
-  -ms-user-select: none;
-  user-select: none;
-}
+  position: relative; }
+  .rocketScroll .scrollDiv {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
+    overflow-y: scroll;
+    height: 100%; }
+  .rocketScroll .scrollContent {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box; }
+  .rocketScroll .scrollbar {
+    position: absolute;
+    right: 6px;
+    top: 6px;
+    bottom: 6px;
+    background: transparent;
+    width: 6px;
+    border-radius: 3px;
+    transition: background-color 0.5s; }
+    .rocketScroll .scrollbar:hover {
+      cursor: pointer; }
+      .rocketScroll .scrollbar:hover div:hover {
+        background: #777; }
+  .rocketScroll .scrollbar div {
+    height: 100px;
+    width: 6px;
+    border-radius: 3px;
+    background: transparent;
+    transition: background-color 0.5s; }
+  .rocketScroll:hover .scrollbar {
+    background: #ddd; }
+  .rocketScroll:hover .scrollbar div {
+    background: #aaa; }
+  .rocketScroll .unselectable {
+    -moz-user-select: none;
+    -webkit-user-select: none;
+    -ms-user-select: none;
+    user-select: none; }

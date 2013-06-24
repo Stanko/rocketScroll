@@ -2,7 +2,6 @@
    v2.0 | 20110126
    License: none (public domain)
 */
-/* line 18, ../sass/reset.scss */
 html, body, div, span, applet, object, iframe,
 h1, h2, h3, h4, h5, h6, p, blockquote, pre,
 a, abbr, acronym, address, big, cite, code,
@@ -24,41 +23,33 @@ time, mark, audio, video {
   vertical-align: baseline; }
 
 /* HTML5 display-role reset for older browsers */
-/* line 28, ../sass/reset.scss */
 article, aside, details, figcaption, figure,
 footer, header, hgroup, menu, nav, section {
   display: block; }
 
-/* line 31, ../sass/reset.scss */
 body {
   line-height: 1; }
 
-/* line 34, ../sass/reset.scss */
 ol, ul {
   list-style: none; }
 
-/* line 37, ../sass/reset.scss */
 blockquote, q {
   quotes: none; }
 
-/* line 41, ../sass/reset.scss */
 blockquote:before, blockquote:after,
 q:before, q:after {
   content: '';
   content: none; }
 
-/* line 45, ../sass/reset.scss */
 table {
   border-collapse: collapse;
   border-spacing: 0; }
 
-/* line 3, ../sass/demo.scss */
 * {
   -webkit-box-sizing: border-box;
   -moz-box-sizing: border-box;
   box-sizing: border-box; }
 
-/* line 8, ../sass/demo.scss */
 body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-size: 16px;
@@ -67,30 +58,24 @@ body {
   background: #f3f6f9;
   margin: 40px; }
 
-/* line 16, ../sass/demo.scss */
 h1, h2, h3 {
   font-size: 32px;
   font-weight: 200;
   margin-bottom: 10px; }
 
-/* line 21, ../sass/demo.scss */
 h2 {
   font-size: 24px; }
 
-/* line 22, ../sass/demo.scss */
 h3 {
   font-size: 20px; }
 
-/* line 23, ../sass/demo.scss */
 p {
   margin-bottom: 15px;
   line-height: 1.4em; }
 
-/* line 27, ../sass/demo.scss */
 .big {
   font-size: 18px; }
 
-/* line 31, ../sass/demo.scss */
 .scroll {
   float: left;
   width: 300px;

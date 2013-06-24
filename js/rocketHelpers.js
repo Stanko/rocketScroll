@@ -58,7 +58,20 @@ RS.getOffset = function(e) {
 	return y;
 };
 
+RS.isChild = function(parent, child) {
+     var node = child.parentNode;
+     while (node !== null) {
+         if (node == parent) {
+             return true;
+         }
+         node = node.parentNode;
+     }
+     return false;
+};
+
 RS.stopPropagation = function(e){
+	e = e || window.event; // IE Fix
+
 	if(e.stopPropagation){
 		e.stopPropagation();
 	}
