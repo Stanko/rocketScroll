@@ -95,8 +95,9 @@ RS.RocketScroll.prototype.buildHTML = function() {
 	// Adds new content
 	this.scrollDiv.appendChild(this.contentDiv);
 	this.el.appendChild(this.scrollDiv);
-};
 
+	this.refreshImages();
+};
 
 RS.RocketScroll.prototype.addScrollbar = function() {
 	// Adds scrollbar and handle HTML
@@ -209,6 +210,22 @@ RS.RocketScroll.prototype.refresh = function(){
 	this.handle.style.marginTop = this.ratio * this.scrollDiv.scrollTop + 'px';
 };
 
+RS.RocketScroll.prototype.refreshImages = function() {
+	// Refresh after every image load
+	var images = RS.$('#' + this.el.id + ' .scrollContent img');
+
+	if(images.length > 0){
+		var $this = this;
+
+		for(var i=0; i<images.length; i++){
+			images.item(i).onload = function(){
+				$this.refresh();
+				// removing onload event
+				this.onload = null;
+			};
+		}
+	}
+};
 
 RS.RocketScroll.prototype.updateContent = function(newContent){
 	// Updates all scrolls with same content :/
@@ -224,4 +241,5 @@ RS.RocketScroll.prototype.updateContent = function(newContent){
 	// Updates and refresh
 	this.contentDiv.innerHTML = newContent;
 	this.refresh();
+	this.refreshImages();
 };

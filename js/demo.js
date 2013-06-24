@@ -3,6 +3,6 @@ RS.$('.onclick').onclick = function(){
 };
 
 
-var rlScroll = new RS.RocketScroll('#scroll');
+var rsSingle = new RS.RocketScroll('#scroll');
 
-var rlScroll = new RS.RocketScroll('.multiple');
+var rsMultiple = new RS.RocketScroll('.multiple');

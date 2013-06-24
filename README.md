@@ -23,18 +23,18 @@ I decided to biuld this, as didn't find single plain JavaScript script that actu
 
 Just pass CSS selector, (in IE8 only CSS 2.1 selectors). 
 
-``var rlScrollSingle = new RS.RocketScroll('#scrollDiv');``
+``var rsSingle = new RS.RocketScroll('#scrollDiv');``
 
-``var rlScrollMultiple = RS.RocketScroll('.scrollDiv');``
+``var rsMultiple = RS.RocketScroll('.scrollDiv');``
 
 ### .updateContent(newContent)
 
 Then you can update content via 
-`rlScrollSingle.updateContent('new content here');` or 
-`rlScrollSingle.contentDiv.innerHTML = 'new content here';`. 
+`rsSingle.updateContent('new content here');` or 
+`rsMultiple.contentDiv.innerHTML = 'new content here';`. 
 That is for single item scrolls.
 
-For multiple ones if you call `updateContent` method, will set same content for all the scrolls. So use `rlScrollMultiple.elements[i].contentDiv.innerHTML = 'new content here';` where is `i`, index of scroll you want to update. 
+For multiple ones if you call `updateContent` method, will set same content for all the scrolls. So use `rsMultiple.elements[i].contentDiv.innerHTML = 'new content here';` where is `i`, index of scroll you want to update. 
 
 Also, if you have scroll's id, you can use included selector class: `RS.$('#SCROLL_ID_HERE .scrollContent').innerHTML = 'new content here';`. 
 
@@ -44,7 +44,11 @@ Long story short, just update `.scrollContent` div in the element.
 
 NOTICE!!! After manual updating the content, you need to call `.refresh()` method. It works for both single and multiple scrolls.
 
-Also if you have images, and their's width and height and not defined, call `.refresh()` method after loading images.
+
+### .refreshImages()
+
+On init, and content updating, script calls this method, to update itself on every image load.
+
 
 ## TODO
 
@@ -55,6 +59,7 @@ Also if you have images, and their's width and height and not defined, call `.re
 * ~~Don't enable it at touch screens at all~~
 * ~~Make it possible to apply it directly to multiple elements (ie. giving class name)~~
 * ~~Dynamic height of the handle (depending of the element and scrollabe content ratio)~~
+* ~~Call refresh "onload" on images~~
 * Fix bugs :P
 
 
