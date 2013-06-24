@@ -1,15 +1,21 @@
-/* line 1, ../sass/rocketScroll.scss */
+/* line 7, ../sass/rocketScroll.scss */
 .rocketScroll {
   overflow: hidden !important;
   position: relative; }
-  /* line 5, ../sass/rocketScroll.scss */
-  .rocketScroll .scrollFix {
+  /* line 11, ../sass/rocketScroll.scss */
+  .rocketScroll .scrollDiv {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     overflow-y: scroll;
     height: 100%; }
-  /* line 10, ../sass/rocketScroll.scss */
+  /* line 16, ../sass/rocketScroll.scss */
   .rocketScroll .scrollContent {
+    -webkit-box-sizing: border-box;
+    -moz-box-sizing: border-box;
+    box-sizing: border-box;
     width: 300px; }
-  /* line 14, ../sass/rocketScroll.scss */
+  /* line 21, ../sass/rocketScroll.scss */
   .rocketScroll .scrollbar {
     position: absolute;
     right: 6px;
@@ -19,26 +25,26 @@
     width: 6px;
     border-radius: 3px;
     transition: background-color 0.5s; }
-    /* line 23, ../sass/rocketScroll.scss */
+    /* line 30, ../sass/rocketScroll.scss */
     .rocketScroll .scrollbar:hover {
       cursor: pointer; }
-      /* line 25, ../sass/rocketScroll.scss */
+      /* line 32, ../sass/rocketScroll.scss */
       .rocketScroll .scrollbar:hover div:hover {
         background: #777; }
-  /* line 31, ../sass/rocketScroll.scss */
+  /* line 38, ../sass/rocketScroll.scss */
   .rocketScroll .scrollbar div {
     height: 100px;
     width: 6px;
     border-radius: 3px;
     background: transparent;
     transition: background-color 0.5s; }
-  /* line 40, ../sass/rocketScroll.scss */
+  /* line 47, ../sass/rocketScroll.scss */
   .rocketScroll:hover .scrollbar {
     background: #ddd; }
-  /* line 43, ../sass/rocketScroll.scss */
+  /* line 50, ../sass/rocketScroll.scss */
   .rocketScroll:hover .scrollbar div {
     background: #aaa; }
-  /* line 48, ../sass/rocketScroll.scss */
+  /* line 55, ../sass/rocketScroll.scss */
   .rocketScroll .unselectable {
     -moz-user-select: none;
     -webkit-user-select: none;

@@ -11,23 +11,29 @@ body{
 	font-weight: 200;
 	color: #333;
 	background: #f3f6f9;
+	margin: 40px;
 }
-h1, h2{
-	font-size: 24px;
+h1, h2, h3 {
+	font-size: 32px;
 	font-weight: 200;
 	margin-bottom: 10px;
 }
+h2{ font-size: 24px; }
 h2{ font-size: 20px; }
 p{
 	margin-bottom: 15px;
 	line-height: 1.4em;
 }
+.big{
+	font-size: 18px;
+}
 
-#scroll{
+.scroll{
+	float: left;
 	width: 300px;
 	height: 400px;
 	position: relative;
-	margin: 30px auto;
+	margin: 20px 40px 40px 0;
 	border: 1px solid #666;
 	background: #f9f9f9;
 	border-radius: 2px;

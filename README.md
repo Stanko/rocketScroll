@@ -31,10 +31,10 @@ Too sleepy at the moment :) tomorrow! Just download zip and try it.
 * Replace helpers with custom micro JS library (nevermind this one :D)
 * Don't copy innerHTML of the document, but wrap it in needed HTML (to save binding on inner elements)
 * ~~Make clicking on the scrollbar move handle to be centered to the place where user clicked (now it brings top of the handle there)~~
-* Disable it when content fits the container
-* Don't enable it at touch screens at all
-* Make it possible to apply it directly to multiple elements (ie. giving class name)
-* Dynamic height of the handle (depending of the element and scrollabe content ratio)
+* ~~Disable it when content fits the container~~
+* ~~Don't enable it at touch screens at all~~
+* ~~Make it possible to apply it directly to multiple elements (ie. giving class name)~~
+* ~~Dynamic height of the handle (depending of the element and scrollabe content ratio)~~
 * Fix bugs :P
 
 

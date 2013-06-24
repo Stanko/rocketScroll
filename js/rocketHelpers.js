@@ -27,7 +27,7 @@ var RL = RL || {};
 
 RL.getScrollTop = function(){
 	if(typeof pageYOffset !== 'undefined'){
-		//most browsers
+		// Most browsers
 		return pageYOffset;
 	}
 	else{
@@ -72,6 +72,10 @@ RL.stopPropagation = function(e){
 RL.$ = function (s) {
 	var r = document.querySelectorAll(s);
 	return r.length === 1 ? r[0] : r;
+};
+
+RL.detectTouchScreen = function(){
+	return ('ontouchstart' in document.documentElement);
 };
 
 RL.detectIE = function(){

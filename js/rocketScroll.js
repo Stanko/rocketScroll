@@ -6,8 +6,35 @@
 
 var RL = RL || {};
 
-RL.RocketScroll = function (selector){
-	this.el = RL.$(selector);
+RL.RocketScroll = function (element, isElement){
+	// Don't enable it on touch screens
+	if(RL.detectTouchScreen()){
+		return;
+	}
+
+	isElement = isElement || false;
+
+	// Check if argument element or selector
+	if(isElement){
+		this.el = element;
+	}
+	else{
+		this.el = RL.$(element);
+	}
+
+	// If selector return node list apply scroll to each node
+	if(typeof(this.el.length) !== 'undefined' && this.el.length > 1){
+		this.elements = [];
+		for(var i = 0; i < this.el.length; i++){
+			this.elements.push( new RL.RocketScroll(this.el.item(i) , true) );
+		}
+		this.multiple = true;
+		return;
+	}
+	else{
+		this.multiple = false;
+	}
+
 	this.el.className += ' rocketScroll';
 
 	this.mouseDown = false;
@@ -32,9 +59,9 @@ RL.RocketScroll.prototype.buildHTML = function() {
 
 	// Div which is used for hiding scrollbar
 	// TODO maybe get client height?
-	this.fixDiv = document.createElement('div');
-	this.fixDiv.style.width = this.el.clientWidth + 50 + 'px';
-	this.fixDiv.className += ' scrollFix';
+	this.scrollDiv = document.createElement('div');
+	this.scrollDiv.style.width = this.el.clientWidth + 50 + 'px';
+	this.scrollDiv.className += ' scrollDiv';
 
 	// Content div
 	// Copies original html of the element and it's padding
@@ -48,8 +75,8 @@ RL.RocketScroll.prototype.buildHTML = function() {
 	this.el.style.padding = 0;
 
 	// Adds new content
-	this.fixDiv.appendChild(this.contentDiv);
-	this.el.appendChild(this.fixDiv);
+	this.scrollDiv.appendChild(this.contentDiv);
+	this.el.appendChild(this.scrollDiv);
 };
 
 
@@ -69,7 +96,7 @@ RL.RocketScroll.prototype.bindEvents = function(){
 	var $this = this;
 
 	// Move handle on mouse scroll
-	this.fixDiv.onscroll = function(){
+	this.scrollDiv.onscroll = function(){
 		$this.handle.style.marginTop = $this.ratio * this.scrollTop + 'px';
 	};
 
@@ -82,7 +109,7 @@ RL.RocketScroll.prototype.bindEvents = function(){
 		$this.contentDiv.className += $this.UNSELECTABLE_CLASS;
 
 		$this.clientY = e.clientY;
-		$this.scrollTop = $this.fixDiv.scrollTop;
+		$this.scrollTop = $this.scrollDiv.scrollTop;
 		$this.mouseDown = true;
 	};
 	this.el.onmouseup = function(){
@@ -115,7 +142,7 @@ RL.RocketScroll.prototype.bindEvents = function(){
 		}
 
 		e = e || window.event; // IE Fix
-		$this.fixDiv.scrollTop = ((e.clientY - $this.clientY) / $this.ratio) + $this.scrollTop;
+		$this.scrollDiv.scrollTop = ((e.clientY - $this.clientY) / $this.ratio) + $this.scrollTop;
 	};
 
 	// Handles click on the scrollbar
@@ -127,18 +154,40 @@ RL.RocketScroll.prototype.bindEvents = function(){
 		// Moves center of the handle to the cursor
 		var layerY = RL.getOffset(e) - $this.handle.clientHeight / 2;
 
-		$this.fixDiv.scrollTop = layerY / $this.totalHandle * $this.totalScrollable;
+		$this.scrollDiv.scrollTop = layerY / $this.totalHandle * $this.totalScrollable;
 	};
 };
 
 RL.RocketScroll.prototype.refresh = function(){
+
+	// Refresh multiple elements
+	if(this.multiple){
+		for( var i in this.elements){
+			this.elements[i].refresh();
+		}
+		return;
+	}
+
+
+	// If content is smaller than the container
+	if(this.scrollDiv.clientHeight > this.contentDiv.clientHeight){
+		this.scrollbar.style.display = 'none';
+	}
+	else{
+		this.scrollbar.style.display = 'block';
+	}
+
+	// Dynamic scroll handle height, as the content is smaller
+	// handle gets bigger, as there is less to scroll
+	this.handle.style.height = this.scrollDiv.clientHeight * (this.scrollDiv.clientHeight / this.contentDiv.clientHeight) + 'px';
+
 	// Refreshing scroll bar position and ratio
 	// Should be called on content change
-	this.totalScrollable = this.contentDiv.clientHeight - this.fixDiv.clientHeight;
+	this.totalScrollable = this.contentDiv.clientHeight - this.scrollDiv.clientHeight;
 	this.totalHandle = this.scrollbar.clientHeight - this.handle.clientHeight;
 
 	this.ratio = this.totalHandle / this.totalScrollable;
 
-	this.handle.style.marginTop = this.ratio * this.fixDiv.scrollTop + 'px';
+	this.handle.style.marginTop = this.ratio * this.scrollDiv.scrollTop + 'px';
 };
 
