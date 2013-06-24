@@ -40,9 +40,11 @@ Also, if you have scroll's id, you can use included selector class: `RS.$('#SCRO
 
 Long story short, just update `.scrollContent` div in the element.
 
-### .refresh()
+### .refresh(updateImagesOnload)
 
 NOTICE!!! After manual updating the content, you need to call `.refresh()` method. It works for both single and multiple scrolls.
+
+If you send `updateImagesOnload = true`, method will call `.refreshImages()`. Default is `false`;
 
 
 ### .refreshImages()

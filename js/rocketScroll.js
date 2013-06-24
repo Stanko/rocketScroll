@@ -177,7 +177,8 @@ RS.RocketScroll.prototype.bindEvents = function(){
 	};
 };
 
-RS.RocketScroll.prototype.refresh = function(){
+RS.RocketScroll.prototype.refresh = function(updateImagesOnload){
+	updateImagesOnload = updateImagesOnload || false;
 
 	// Refresh multiple elements
 	if(this.multiple){
@@ -208,6 +209,10 @@ RS.RocketScroll.prototype.refresh = function(){
 	this.ratio = this.totalHandle / this.totalScrollable;
 
 	this.handle.style.marginTop = this.ratio * this.scrollDiv.scrollTop + 'px';
+
+	if(updateImagesOnload){
+		this.refreshImages();
+	}
 };
 
 RS.RocketScroll.prototype.refreshImages = function() {
