@@ -21,15 +21,16 @@ I decided to biuld this, as didn't find single plain JavaScript script that actu
 Although even this version is working pretty smooth. Feel free to try it and give suggestions. Will be updated soon.
 
 
-## DEMO
+## [DEMO](http://stanko.github.io/rocketScroll/)
 
-Too sleepy at the moment :) tomorrow! Just download zip and try it.
+Yay, let us see it live :)
 
 
 ## TODO
 
 * Replace helpers with custom micro JS library (nevermind this one :D)
 * Don't copy innerHTML of the document, but wrap it in needed HTML (to save binding on inner elements)
+* ~~Make demo~~
 * ~~Make clicking on the scrollbar move handle to be centered to the place where user clicked (now it brings top of the handle there)~~
 * ~~Disable it when content fits the container~~
 * ~~Don't enable it at touch screens at all~~
