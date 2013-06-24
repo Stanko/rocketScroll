@@ -23,9 +23,9 @@ if (!window.getComputedStyle) {
 	};
 }
 
-var RL = RL || {};
+var RS = RS || {};
 
-RL.getScrollTop = function(){
+RS.getScrollTop = function(){
 	if(typeof pageYOffset !== 'undefined'){
 		// Most browsers
 		return pageYOffset;
@@ -40,7 +40,7 @@ RL.getScrollTop = function(){
 
 // Gets Y offset of event, relative to source element
 // Calculating X is commented, as this plugin is not using it
-RL.getOffset = function(e) {
+RS.getOffset = function(e) {
 	var el = e.target ? e.target : e.srcElement, // IE Check
 		//x = 0,
 		y = 0;
@@ -51,14 +51,14 @@ RL.getOffset = function(e) {
 		el = el.offsetParent;
 	}
 
-	//x = e.clientX + RL.getScrollLeft() - x;
-	y = e.clientY + RL.getScrollTop() - y;
+	//x = e.clientX + RS.getScrollLeft() - x;
+	y = e.clientY + RS.getScrollTop() - y;
 
 	//return { x: x, y: y };
 	return y;
 };
 
-RL.stopPropagation = function(e){
+RS.stopPropagation = function(e){
 	if(e.stopPropagation){
 		e.stopPropagation();
 	}
@@ -69,15 +69,15 @@ RL.stopPropagation = function(e){
 	}
 };
 
-RL.$ = function (s) {
+RS.$ = function (s) {
 	var r = document.querySelectorAll(s);
 	return r.length === 1 ? r[0] : r;
 };
 
-RL.detectTouchScreen = function(){
+RS.detectTouchScreen = function(){
 	return ('ontouchstart' in document.documentElement);
 };
 
-RL.detectIE = function(){
+RS.detectIE = function(){
 	return document.all ? true : false;
 };

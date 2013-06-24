@@ -1,3 +1,8 @@
-var rlScroll = new RL.RocketScroll('#scroll');
+RS.$('.onclick').onclick = function(){
+	alert('I saved my attached event');
+};
 
-var rlScroll = new RL.RocketScroll('.multiple');
+
+var rlScroll = new RS.RocketScroll('#scroll');
+
+var rlScroll = new RS.RocketScroll('.multiple');
