@@ -7,6 +7,9 @@ Made with love <3
 
 I decided to biuld this, as didn't find single plain JavaScript script that actually works. Either that, or those would need whole jQuery with plugins for mouse scroll and stuf... This script is really small, and uses simple trick to preserve native mouse wheel / arrows scroll. It is done by css, and element that is actually scrolling is 50px wider than the parent. So native scroll bar is still there and works, but hidden from the eye of the user.
 
+## DEMO
+
+[Click here for demo](http://stanko.github.io/rocketScroll/). Yay, let us see it live :)
 
 ## Why you should use it
 
@@ -19,11 +22,6 @@ I decided to biuld this, as didn't find single plain JavaScript script that actu
 ## Still work in progress
 
 Although even this version is working pretty smooth. Feel free to try it and give suggestions. Will be updated soon.
-
-
-## [DEMO](http://stanko.github.io/rocketScroll/)
-
-Yay, let us see it live :)
 
 
 ## TODO
