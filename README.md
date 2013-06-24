@@ -23,22 +23,33 @@ I decided to biuld this, as didn't find single plain JavaScript script that actu
 
 Just pass CSS selector, (in IE8 only CSS 2.1 selectors). 
 
-``
-var rlScrollSingle = new RS.RocketScroll('#scrollDiv');
-var rlScrollMultiple = RS.RocketScroll('.scrollDiv');
-``
+``var rlScrollSingle = new RS.RocketScroll('#scrollDiv');``
 
-Then you can update content via `rlScrollSingle.updateContent('new content here');` or `rlScrollSingle.contentDiv.innerHTML = 'new content here';`. That is for single item scrolls.
+``var rlScrollMultiple = RS.RocketScroll('.scrollDiv');``
 
-For multiple ones if you call `updateContent`, it will set same content for all the scrolls. So use `rlScrollMultiple.elements[i].contentDiv.innerHTML = 'new content here';` where is `i`, index of that scroll you want to update. 
+### .updateContent(newContent)
 
-Also, if you have scroll's id, you can use included selector class: `RS.$('#SCROLL_ID_HERE .scrollContent').innerHTML = 'new content here';`
+Then you can update content via 
+`rlScrollSingle.updateContent('new content here');` or 
+`rlScrollSingle.contentDiv.innerHTML = 'new content here';`. 
+That is for single item scrolls.
 
+For multiple ones if you call `updateContent` method, will set same content for all the scrolls. So use `rlScrollMultiple.elements[i].contentDiv.innerHTML = 'new content here';` where is `i`, index of scroll you want to update. 
+
+Also, if you have scroll's id, you can use included selector class: `RS.$('#SCROLL_ID_HERE .scrollContent').innerHTML = 'new content here';`. 
+
+Long story short, just update `.scrollContent` div in the element.
+
+### .refresh()
+
+NOTICE!!! After manual updating the content, you need to call `.refresh()` method. It works for both single and multiple scrolls.
+
+Also if you have images, and their's width and height and not defined, call `.refresh()` method after loading images.
 
 ## TODO
 
 * ~~Make demo~~
-* ~~Don't copy innerHTML of the document, but wrap it in needed HTML (to save binding on inner elements)~~ [1]
+* ~~Don't copy html of the document, but wrap it in needed HTML (to save bindings on inner elements)~~ [1]
 * ~~Make clicking on the scrollbar move handle to be centered to the place where user clicked (now it brings top of the handle there)~~
 * ~~Disable it when content fits the container~~
 * ~~Don't enable it at touch screens at all~~
