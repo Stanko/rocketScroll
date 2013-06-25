@@ -53,6 +53,8 @@ RS.RocketScroll = function (element, isElement){
 	this.addScrollbar();
 	this.refresh();
 	this.bindEvents();
+
+	this.SELECTION_TIMEOUT = false;
 };
 
 
@@ -111,6 +113,16 @@ RS.RocketScroll.prototype.addScrollbar = function() {
 	this.el.appendChild(this.scrollbar);
 };
 
+RS.RocketScroll.prototype.setMouseUpAndEnableSelection = function(instance){
+	instance.contentDiv.className = instance.contentDiv.className.replace(instance.UNSELECTABLE_CLASS, '');
+	instance.mouseDown = false;
+
+	clearTimeout(instance.SELECTION_TIMEOUT);
+	instance.SELECTION_TIMEOUT = setTimeout(function(){
+		RS.enableSelection(true);
+	}, 500);
+};
+
 RS.RocketScroll.prototype.bindEvents = function(){
 	var $this = this;
 
@@ -119,6 +131,8 @@ RS.RocketScroll.prototype.bindEvents = function(){
 		$this.handle.style.marginTop = $this.ratio * this.scrollTop + 'px';
 	};
 
+
+	// Just stop propagating click to scrollbar
 	this.handle.onclick = function(e){
 		RS.stopPropagation(e);
 	};
@@ -130,35 +144,39 @@ RS.RocketScroll.prototype.bindEvents = function(){
 		RS.stopPropagation(e);
 
 		$this.contentDiv.className += $this.UNSELECTABLE_CLASS;
+		RS.enableSelection(false);
 
 		$this.clientY = e.clientY;
 		$this.scrollTop = $this.scrollDiv.scrollTop;
 		$this.mouseDown = true;
+
 	};
 	this.el.onmouseup = function(){
-		$this.contentDiv.className = $this.contentDiv.className.replace($this.UNSELECTABLE_CLASS, '');
-		$this.mouseDown = false;
+		$this.setMouseUpAndEnableSelection($this);
 	};
 
-	// Fix scroll lock
-	this.el.onmouseout = function(e){
-		e = e || window.event; // IE Fix
-		RS.stopPropagation(e);
+	// IE supports onmouseleave evenet
+	if(RS.detectIE()){
+		this.el.onmouseleave = function(){
+			$this.setMouseUpAndEnableSelection($this);
+		};
+	}
+	// Emulation for the other browsers, because they trigger mouseout on child nodes
+	else{
+		this.el.onmouseout = function(e){
+			// Check if relatedTarget (element mouse moved on to) is child of the our element
+			var current = e.relatedTarget;
+			while(current){
+				if(current == this){
+					// If it is then mouse didn't left the element
+					return;
+				}
+				current = current.parentNode;
+			}
+			$this.setMouseUpAndEnableSelection($this);
+		};
+	}
 
-		possibleChild = e.relatedTarget || e.toElement;
-
-		// Emulates onmouse leave (onmouse out is triggered when mouse gets over child element)
-		if (!RS.isChild(this, possibleChild)){
-			$this.mouseDown = false;
-			$this.contentDiv.className = $this.contentDiv.className.replace($this.UNSELECTABLE_CLASS, '');
-		}
-	};
-
-	// Dirty fix for chrome/webkit browsers where you can scroll left by selecting text
-	this.el.onscroll = function(e){
-		e.preventDefault();
-		$this.el.scrollLeft = 0;
-	};
 
 	// Handles mouse move, only when mouse is pressed
 	this.el.onmousemove = function(e){
@@ -181,6 +199,12 @@ RS.RocketScroll.prototype.bindEvents = function(){
 		var layerY = RS.getOffset(e) - $this.handle.clientHeight / 2;
 
 		$this.scrollDiv.scrollTop = layerY / $this.totalHandle * $this.totalScrollable;
+	};
+
+	// Dirty fix for chrome/webkit browsers where you can scroll left by selecting text
+	this.el.onscroll = function(e){
+		e.preventDefault();
+		$this.el.scrollLeft = 0;
 	};
 };
 

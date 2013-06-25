@@ -58,17 +58,6 @@ RS.getOffset = function(e) {
 	return y;
 };
 
-RS.isChild = function(parent, child) {
-     var node = child.parentNode;
-     while (node !== null) {
-         if (node == parent) {
-             return true;
-         }
-         node = node.parentNode;
-     }
-     return false;
-};
-
 RS.stopPropagation = function(e){
 	e = e || window.event; // IE Fix
 
@@ -79,6 +68,21 @@ RS.stopPropagation = function(e){
 		// IE8 and lower stop propagation
 		window.event.cancelBubble = true;
 		window.event.returnValue = false;
+	}
+};
+
+
+RS.originalOnselectstart = false;
+
+RS.enableSelection = function(enable) {
+	if(enable) {
+		window.document.onselectstart = RS.originalOnselectstart;
+	}
+	else {
+		RS.originalOnselectstart = window.document.onselectstart;
+		window.document.onselectstart = function() {
+			return false;
+		};
 	}
 };
 

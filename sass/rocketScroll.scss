@@ -4,6 +4,13 @@
 	box-sizing: border-box;
 }
 
+@mixin unselectable(){
+	-moz-user-select: none;
+	-webkit-user-select: none;
+	-ms-user-select: none;
+	user-select: none;
+}
+
 .rocketScroll{
 	overflow: hidden !important;
 	position: relative;
@@ -32,6 +39,9 @@
 				background: #777;
 			}
 		}
+		&, & div{
+			@include unselectable;
+		}
 	}
 
 	.scrollbar div{
@@ -52,9 +62,6 @@
 	}
 
 	.unselectable {
-	  -moz-user-select: none;
-	  -webkit-user-select: none;
-	  -ms-user-select: none;
-	  user-select: none;
+		@include unselectable;
 	}
 }
