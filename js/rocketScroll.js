@@ -66,7 +66,6 @@ RS.RocketScroll.prototype.buildHTML = function() {
 		elStyle.getPropertyValue('padding-right') + ' ' +
 		elStyle.getPropertyValue('padding-bottom') + ' ' +
 		elStyle.getPropertyValue('padding-left');
-	console.log(this.el, elStyle);
 
 	// Div which is scrolled, 50px wider to hide scrollbar
 	this.scrollDiv = document.createElement('div');
