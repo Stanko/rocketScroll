@@ -115,16 +115,6 @@ RS.RocketScroll.prototype.addScrollbar = function() {
 	this.el.appendChild(this.scrollbar);
 };
 
-RS.RocketScroll.prototype.setMouseUpAndEnableSelection = function(instance){
-	instance.contentDiv.className = instance.contentDiv.className.replace(instance.UNSELECTABLE_CLASS, '');
-	instance.mouseDown = false;
-
-	clearTimeout(instance.SELECTION_TIMEOUT);
-	instance.SELECTION_TIMEOUT = setTimeout(function(){
-		RS.enableSelection(true);
-	}, 500);
-};
-
 RS.RocketScroll.prototype.bindEvents = function(){
 	var $this = this;
 
@@ -210,7 +200,19 @@ RS.RocketScroll.prototype.bindEvents = function(){
 	};
 };
 
-RS.RocketScroll.prototype.refresh = function(){
+RS.RocketScroll.prototype.setMouseUpAndEnableSelection = function(instance){
+	instance.contentDiv.className = instance.contentDiv.className.replace(instance.UNSELECTABLE_CLASS, '');
+	instance.mouseDown = false;
+
+	// Small delay on enabling text selecting again
+	clearTimeout(instance.SELECTION_TIMEOUT);
+	instance.SELECTION_TIMEOUT = setTimeout(function(){
+		RS.enableSelection(true);
+	}, 500);
+};
+
+RS.RocketScroll.prototype.refresh = function(updateImagesOnload){
+	updateImagesOnload = updateImagesOnload || false;
 
 	// Refresh multiple elements
 	if(this.multiple){
