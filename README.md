@@ -21,26 +21,26 @@ I decided to biuld this, as didn't find single plain JavaScript script that actu
 
 ## Usage
 
-Just pass CSS selector, (in IE8 only CSS 2.1 selectors). 
+Just pass CSS selector, (in IE8 only CSS 2.1 selectors).
 
 ``var rsSingle = new RS.RocketScroll('#scrollDiv');``
 
-``var rsMultiple = RS.RocketScroll('.scrollDiv');``
+``var rsMultiple = new RS.RocketScroll('.scrollDiv');``
 
 ### .updateContent(newContent)
 
-Then you can update content via 
-`rsSingle.updateContent('new content here');` or 
-`rsMultiple.contentDiv.innerHTML = 'new content here';`. 
+Then you can update content via
+`rsSingle.updateContent('new content here');` or
+`rsMultiple.contentDiv.innerHTML = 'new content here';`.
 That is for single item scrolls.
 
-For multiple ones if you call `updateContent` method, will set same content for all the scrolls. So use `rsMultiple.elements[i].contentDiv.innerHTML = 'new content here';` where is `i`, index of scroll you want to update. 
+For multiple ones if you call `updateContent` method, will set same content for all the scrolls. So use `rsMultiple.elements[i].contentDiv.innerHTML = 'new content here';` where is `i`, index of scroll you want to update.
 
-Also, if you have scroll's id, you can use included selector class: `RS.$('#SCROLL_ID_HERE .scrollContent').innerHTML = 'new content here';`. 
+Also, if you have scroll's id, you can use included selector class: `RS.$('#SCROLL_ID_HERE .scrollContent').innerHTML = 'new content here';`.
 
 Long story short, just update `.scrollContent` div in the element.
 
-### .refresh(updateImagesOnload)
+### .refresh()
 
 NOTICE!!! After manual updating the content, you need to call `.refresh()` method. It works for both single and multiple scrolls.
 

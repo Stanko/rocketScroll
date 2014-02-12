@@ -17,7 +17,7 @@ RS.RocketScroll = function (element, isElement){
 
 	isElement = isElement || false;
 
-	// Check if argument element or selector
+	// Check if argument is element or selector
 	if(isElement){
 		this.el = element;
 	}
@@ -40,7 +40,7 @@ RS.RocketScroll = function (element, isElement){
 
 	// Adds ID to the element if there is none
 	if(!this.el.id){
-		this.el.id = 'rocketScroll'+(RS.__id++);
+		this.el.id = 'rocketScroll' + (RS.__id++);
 	}
 
 	this.el.className += ' rocketScroll';
@@ -59,9 +59,11 @@ RS.RocketScroll = function (element, isElement){
 
 
 RS.RocketScroll.prototype.buildHTML = function() {
+	var elStyle, firstChild, paddingValue;
+
 	// Getting element's padding
 	// TODO find more elegant solution
-	var elStyle = window.getComputedStyle(this.el, ''),
+	elStyle = window.getComputedStyle(this.el, ''),
 		paddingValue = elStyle.getPropertyValue('padding-top') + ' ' +
 		elStyle.getPropertyValue('padding-right') + ' ' +
 		elStyle.getPropertyValue('padding-bottom') + ' ' +
@@ -82,7 +84,7 @@ RS.RocketScroll.prototype.buildHTML = function() {
 	// Tells script to move content div, rather than copy it, to preserve bindings in it
 	// If you use this that div needs to wrap content inside the element
 	// and to have class "rocketCopyThisContent"
-	var firstChild = RS.$('#' + this.el.id + ' .rocketCopyThisContent');
+	firstChild = RS.$('#' + this.el.id + ' .rocketCopyThisContent');
 	if(firstChild.length !== 0){
 		this.contentDiv.appendChild(firstChild);
 	}
@@ -167,7 +169,7 @@ RS.RocketScroll.prototype.bindEvents = function(){
 			// Check if relatedTarget (element mouse moved on to) is child of the our element
 			var current = e.relatedTarget;
 			while(current){
-				if(current == this){
+				if(current === this){
 					// If it is then mouse didn't left the element
 					return;
 				}
@@ -208,8 +210,7 @@ RS.RocketScroll.prototype.bindEvents = function(){
 	};
 };
 
-RS.RocketScroll.prototype.refresh = function(updateImagesOnload){
-	updateImagesOnload = updateImagesOnload || false;
+RS.RocketScroll.prototype.refresh = function(){
 
 	// Refresh multiple elements
 	if(this.multiple){
@@ -241,19 +242,19 @@ RS.RocketScroll.prototype.refresh = function(updateImagesOnload){
 
 	this.handle.style.marginTop = this.ratio * this.scrollDiv.scrollTop + 'px';
 
-	if(updateImagesOnload){
-		this.refreshImages();
-	}
+	this.refreshImages();
 };
 
 RS.RocketScroll.prototype.refreshImages = function() {
+	var images, $this, i;
+
 	// Refresh after every image load
-	var images = RS.$('#' + this.el.id + ' .scrollContent img');
+	images = RS.$('#' + this.el.id + ' .scrollContent img');
 
 	if(images.length > 0){
-		var $this = this;
+		$this = this;
 
-		for(var i=0; i<images.length; i++){
+		for(i = 0; i < images.length; i++){
 			images.item(i).onload = function(){
 				$this.refresh();
 				// removing onload event
@@ -269,13 +270,12 @@ RS.RocketScroll.prototype.updateContent = function(newContent){
 	if(this.multiple){
 		for( var i in this.elements){
 			this.elements[i].contentDiv.innerHTML = newContent;
-			this.elements[i].refresh();
 		}
-		return;
+	}
+	else{
+		this.contentDiv.innerHTML = newContent;
 	}
 
-	// Updates and refresh
-	this.contentDiv.innerHTML = newContent;
+	// Refresh
 	this.refresh();
-	this.refreshImages();
 };
