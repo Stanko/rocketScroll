@@ -21,35 +21,36 @@ I decided to biuld this, as didn't find single plain JavaScript script that actu
 
 ## Usage
 
-Just pass CSS selector, (in IE8 only CSS 2.1 selectors).
+HTML, why three divs? We need three divs to preserve native scroll. I used to create other two
+in JavaScript, but that makes updating content and woking with events a lot harder.
+I switched back to manual HTML coding, but still I think it is pretty simple.
+
+	<div id="SOME_CSS_ID">
+		<div class="scrollDiv">
+			<div class="scrollContent">
+				YOUR CONTENT HERE
+			</div>
+		</div>
+	</div>
+
+Then just pass CSS selector, (in IE8 only CSS 2.1 selectors).
 
 ``var rsSingle = new RS.RocketScroll('#scrollDiv');``
 
 ``var rsMultiple = new RS.RocketScroll('.scrollDiv');``
 
-### .updateContent(newContent)
 
-Then you can update content via
-`rsSingle.updateContent('new content here');` or
-`rsMultiple.contentDiv.innerHTML = 'new content here';`.
-That is for single item scrolls.
-
-For multiple ones if you call `updateContent` method, will set same content for all the scrolls. So use `rsMultiple.elements[i].contentDiv.innerHTML = 'new content here';` where is `i`, index of scroll you want to update.
-
-Also, if you have scroll's id, you can use included selector class: `RS.$('#SCROLL_ID_HERE .scrollContent').innerHTML = 'new content here';`.
-
-Long story short, just update `.scrollContent` div in the element.
-
-### .refresh()
+### .refresh(updateImagesOnload)
 
 NOTICE!!! After manual updating the content, you need to call `.refresh()` method. It works for both single and multiple scrolls.
 
-If you send `updateImagesOnload = true`, method will call `.refreshImages()`. Default is `false`;
+
+(Optional) If you send `updateImagesOnload = true`, method will call `.refreshImages()`. Default is `false`;
 
 
 ### .refreshImages()
 
-On init, and content updating, script calls this method, to update itself on every image load.
+On init and content updating, script calls this method, to update itself on every image load.
 
 
 ## TODO

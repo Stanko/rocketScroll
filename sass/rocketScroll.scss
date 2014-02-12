@@ -22,6 +22,7 @@
 	}
 	.scrollContent{
 		@include border-box;
+		padding: 20px;
 	}
 
 	.scrollbar {
@@ -37,6 +38,7 @@
 			cursor: pointer;
 			div:hover{
 				background: #777;
+				background: rgba(0,0,0,0.55);
 			}
 		}
 		&, & div{
@@ -55,9 +57,11 @@
 	&:hover{
 		.scrollbar{
 			background: #ddd;
+			background: rgba(0,0,0,0.15);
 		}
 		.scrollbar div{
 			background: #aaa;
+			background: rgba(0,0,0,0.35);
 		}
 	}
 

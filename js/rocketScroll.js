@@ -59,46 +59,14 @@ RS.RocketScroll = function (element, isElement){
 
 
 RS.RocketScroll.prototype.buildHTML = function() {
-	var elStyle, firstChild, paddingValue;
-
-	// Getting element's padding
-	// TODO find more elegant solution
-	elStyle = window.getComputedStyle(this.el, ''),
-		paddingValue = elStyle.getPropertyValue('padding-top') + ' ' +
-		elStyle.getPropertyValue('padding-right') + ' ' +
-		elStyle.getPropertyValue('padding-bottom') + ' ' +
-		elStyle.getPropertyValue('padding-left');
-
 	// Div which is scrolled, 50px wider to hide scrollbar
-	this.scrollDiv = document.createElement('div');
+	this.scrollDiv = RS.$('#' + this.el.id + ' .scrollDiv');
 	this.scrollDiv.style.width = this.el.clientWidth + 50 + 'px';
-	this.scrollDiv.className += ' scrollDiv';
 
 	// Content div
 	// Copies original html of the element and it's padding
-	this.contentDiv = document.createElement('div');
-	this.contentDiv.className += ' scrollContent';
-	this.contentDiv.style.padding = paddingValue;
+	this.contentDiv = RS.$('#' + this.el.id + ' .scrollContent');
 	this.contentDiv.style.width = this.el.clientWidth + 'px';
-
-	// Tells script to move content div, rather than copy it, to preserve bindings in it
-	// If you use this that div needs to wrap content inside the element
-	// and to have class "rocketCopyThisContent"
-	firstChild = RS.$('#' + this.el.id + ' .rocketCopyThisContent');
-	if(firstChild.length !== 0){
-		this.contentDiv.appendChild(firstChild);
-	}
-	else{
-		this.contentDiv.innerHTML = this.el.innerHTML;
-	}
-
-	// Removes the content
-	this.el.innerHTML = '';
-	this.el.style.padding = 0;
-
-	// Adds new content
-	this.scrollDiv.appendChild(this.contentDiv);
-	this.el.appendChild(this.scrollDiv);
 
 	this.refreshImages();
 };
@@ -116,11 +84,11 @@ RS.RocketScroll.prototype.addScrollbar = function() {
 };
 
 RS.RocketScroll.prototype.bindEvents = function(){
-	var $this = this;
+	var self = this;
 
 	// Move handle on mouse scroll
 	this.scrollDiv.onscroll = function(){
-		$this.handle.style.marginTop = $this.ratio * this.scrollTop + 'px';
+		self.handle.style.marginTop = self.ratio * this.scrollTop + 'px';
 	};
 
 
@@ -135,22 +103,22 @@ RS.RocketScroll.prototype.bindEvents = function(){
 
 		RS.stopPropagation(e);
 
-		$this.contentDiv.className += $this.UNSELECTABLE_CLASS;
+		self.contentDiv.className += self.UNSELECTABLE_CLASS;
 		RS.enableSelection(false);
 
-		$this.clientY = e.clientY;
-		$this.scrollTop = $this.scrollDiv.scrollTop;
-		$this.mouseDown = true;
+		self.clientY = e.clientY;
+		self.scrollTop = self.scrollDiv.scrollTop;
+		self.mouseDown = true;
 
 	};
 	this.el.onmouseup = function(){
-		$this.setMouseUpAndEnableSelection($this);
+		self.setMouseUpAndEnableSelection(self);
 	};
 
 	// IE supports onmouseleave evenet
 	if(RS.detectIE()){
 		this.el.onmouseleave = function(){
-			$this.setMouseUpAndEnableSelection($this);
+			self.setMouseUpAndEnableSelection(self);
 		};
 	}
 	// Emulation for the other browsers, because they trigger mouseout on child nodes
@@ -165,7 +133,7 @@ RS.RocketScroll.prototype.bindEvents = function(){
 				}
 				current = current.parentNode;
 			}
-			$this.setMouseUpAndEnableSelection($this);
+			self.setMouseUpAndEnableSelection(self);
 		};
 	}
 
@@ -173,12 +141,12 @@ RS.RocketScroll.prototype.bindEvents = function(){
 	// Handles mouse move, only when mouse is pressed
 	this.el.onmousemove = function(e){
 		// User is not holding mouse button
-		if(!$this.mouseDown){
+		if(!self.mouseDown){
 			return;
 		}
 
 		e = e || window.event; // IE Fix
-		$this.scrollDiv.scrollTop = ((e.clientY - $this.clientY) / $this.ratio) + $this.scrollTop;
+		self.scrollDiv.scrollTop = ((e.clientY - self.clientY) / self.ratio) + self.scrollTop;
 	};
 
 	// Handles click on the scrollbar
@@ -188,15 +156,15 @@ RS.RocketScroll.prototype.bindEvents = function(){
 		RS.stopPropagation(e);
 
 		// Moves center of the handle to the cursor
-		var layerY = RS.getOffset(e) - $this.handle.clientHeight / 2;
+		var layerY = RS.getOffset(e) - self.handle.clientHeight / 2;
 
-		$this.scrollDiv.scrollTop = layerY / $this.totalHandle * $this.totalScrollable;
+		self.scrollDiv.scrollTop = layerY / self.totalHandle * self.totalScrollable;
 	};
 
 	// Dirty fix for chrome/webkit browsers where you can scroll left by selecting text
 	this.el.onscroll = function(e){
 		e.preventDefault();
-		$this.el.scrollLeft = 0;
+		self.el.scrollLeft = 0;
 	};
 };
 
@@ -212,11 +180,13 @@ RS.RocketScroll.prototype.setMouseUpAndEnableSelection = function(instance){
 };
 
 RS.RocketScroll.prototype.refresh = function(updateImagesOnload){
+	var i;
+
 	updateImagesOnload = updateImagesOnload || false;
 
 	// Refresh multiple elements
 	if(this.multiple){
-		for( var i in this.elements){
+		for(i in this.elements){
 			this.elements[i].refresh();
 		}
 		return;
@@ -248,17 +218,17 @@ RS.RocketScroll.prototype.refresh = function(updateImagesOnload){
 };
 
 RS.RocketScroll.prototype.refreshImages = function() {
-	var images, $this, i;
+	var images, self, i;
 
 	// Refresh after every image load
 	images = RS.$('#' + this.el.id + ' .scrollContent img');
 
 	if(images.length > 0){
-		$this = this;
+		self = this;
 
 		for(i = 0; i < images.length; i++){
 			images.item(i).onload = function(){
-				$this.refresh();
+				self.refresh();
 				// removing onload event
 				this.onload = null;
 			};
@@ -266,18 +236,3 @@ RS.RocketScroll.prototype.refreshImages = function() {
 	}
 };
 
-RS.RocketScroll.prototype.updateContent = function(newContent){
-	// Updates all scrolls with same content :/
-	// To update single one use varName.elements[i].contentDiv.innerHTML = INSERT_CONTENT_HERE;
-	if(this.multiple){
-		for( var i in this.elements){
-			this.elements[i].contentDiv.innerHTML = newContent;
-		}
-	}
-	else{
-		this.contentDiv.innerHTML = newContent;
-	}
-
-	// Refresh
-	this.refresh();
-};

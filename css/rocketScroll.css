@@ -10,7 +10,8 @@
   .rocketScroll .scrollContent {
     -webkit-box-sizing: border-box;
     -moz-box-sizing: border-box;
-    box-sizing: border-box; }
+    box-sizing: border-box;
+    padding: 20px; }
   .rocketScroll .scrollbar {
     position: absolute;
     right: 6px;
@@ -23,7 +24,8 @@
     .rocketScroll .scrollbar:hover {
       cursor: pointer; }
       .rocketScroll .scrollbar:hover div:hover {
-        background: #777; }
+        background: #777;
+        background: rgba(0, 0, 0, 0.55); }
     .rocketScroll .scrollbar, .rocketScroll .scrollbar div {
       -moz-user-select: none;
       -webkit-user-select: none;
@@ -36,9 +38,11 @@
     background: transparent;
     transition: background-color 0.5s; }
   .rocketScroll:hover .scrollbar {
-    background: #ddd; }
+    background: #ddd;
+    background: rgba(0, 0, 0, 0.15); }
   .rocketScroll:hover .scrollbar div {
-    background: #aaa; }
+    background: #aaa;
+    background: rgba(0, 0, 0, 0.35); }
   .rocketScroll .unselectable {
     -moz-user-select: none;
     -webkit-user-select: none;

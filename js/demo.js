@@ -5,4 +5,4 @@ RS.$('.onclick').onclick = function(){
 
 var rsSingle = new RS.RocketScroll('#scroll');
 
-var rsMultiple = new RS.RocketScroll('.multiple');
+//var rsMultiple = new RS.RocketScroll('.multiple');
