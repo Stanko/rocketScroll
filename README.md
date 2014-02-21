@@ -53,30 +53,16 @@ NOTICE!!! After manual updating the content, you need to call `.refresh()` metho
 On init and content updating, script calls this method, to update itself on every image load.
 
 
-## TODO
-
-* ~~Make demo~~
-* ~~Don't copy html of the document, but wrap it in needed HTML (to save bindings on inner elements)~~ [1]
-* ~~Make clicking on the scrollbar move handle to be centered to the place where user clicked (now it brings top of the handle there)~~
-* ~~Disable it when content fits the container~~
-* ~~Don't enable it at touch screens at all~~
-* ~~Make it possible to apply it directly to multiple elements (ie. giving class name)~~
-* ~~Dynamic height of the handle (depending of the element and scrollabe content ratio)~~
-* ~~Call refresh "onload" on images~~
-* Fix bugs :P
-
-
-[1] To use this you need to wrap inside content in div, which has class - rocketCopyThisContent. Even with this not all events can be perserved.
-
 ## Known issues
 
 Looks like there is crapload of issues - but don't worry! Most of them are minor, and will be solved in reasonable time.
 
 * Doesn't work properly when used on the body tag. Not sure if I'm going to fix this - just use one wrapper div :)
-* In webkit browsers (Chrome, Safari) you can scroll right by selecting text. I have a dirty fix, which just resets the scroll. Looking for more elegant solution.
-* ~~Need to replace event.layerY property with something else as it is deprecated in new broswers, and it doesn't work in IE8.~~
-* ~~Clicking on the scrollbar doesn't scroll in IE8 for that reason~~
+* ~~In webkit browsers (Chrome, Safari) you can scroll right by selecting text. I have a dirty fix, which just resets the scroll. Looking for more elegant solution. FIXED~~
+* ~~Need to replace event.layerY property with something else as it is deprecated in new broswers, and it doesn't work in IE8. FIXED~~
+* ~~Clicking on the scrollbar doesn't scroll in IE8 for that reason FIXED~~
 * When scrolling by pulling handle, if mouse leaves the element, scroll is stopped. This is due the glitch in IE/webkit (It made element "locked" in scroll mode on the next mouse enter, untill you click somewhere.)
+* Using nested scrolls make inner scrollbars show when hovering parent scroll element. This is handled by CSS, maybe switch to JS.
 
 Please give suggestions, fork, upgrade, share, use and abuse it! Pull request are more than welcome :)
 
