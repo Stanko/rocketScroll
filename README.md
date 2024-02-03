@@ -9,7 +9,7 @@ I decided to biuld this, as didn't find single plain JavaScript script that actu
 
 ## DEMO
 
-[Click here for demo](http://stanko.github.io/rocketScroll/). Yay, let us see it live :)
+[Click here for demo](http://stanko.github.io/rocketScroll/).
 
 ## Why you should use it
 
